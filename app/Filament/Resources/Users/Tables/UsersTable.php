@@ -9,7 +9,7 @@ use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
-
+use Ariaieboy\FilamentJalali\Tables\Columns\JalaliDateColumn;
 class UsersTable
 {
     public static function configure(Table $table): Table
@@ -26,7 +26,8 @@ class UsersTable
                     ->label('وضعیت'),
                 TextColumn::make('created_at')
                     ->label('تاریخ ثبت نام')
-                    ->dateTime('Y-m-d'),
+                    ->dateTime('Y-m-d')
+                    ->jalaliDate(),
             ])
             ->filters([
                 SelectFilter::make('status')

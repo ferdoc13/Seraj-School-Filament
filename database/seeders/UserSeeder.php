@@ -15,8 +15,8 @@ class UserSeeder extends Seeder
     {
         User::create([
             'name' => 'فردوک',
-            'mobile' => '09353646265',
-            'email' => 'ferdo30.ir@gmail.com',
+            'mobile' => '09123456789',
+            'email' => 'admin@admin.com',
             'password' => Hash::make('12345678'),
             'status' => true,
         ]);
