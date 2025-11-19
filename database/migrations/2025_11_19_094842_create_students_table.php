@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('national_code')->unique();
             $table->boolean('status')->default(true);
             $table->date('birth_date');
+
+            $table->softDeletes();
             $table->timestamps();
         });
     }
