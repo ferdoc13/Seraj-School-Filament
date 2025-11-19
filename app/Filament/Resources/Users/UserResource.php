@@ -13,7 +13,7 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
-
+use UnitEnum;
 class UserResource extends Resource
 {
     protected static ?string $model = User::class;
@@ -23,6 +23,7 @@ class UserResource extends Resource
     protected static ?string $recordTitleAttribute = 'User';
     protected static ?string $pluralModelLabel = 'مدیریت کاربران';
     protected static ?string $modelLabel = 'کاربر';
+    protected static UnitEnum|string|null $navigationGroup = 'مدیریت افراد';
 
     public static function form(Schema $schema): Schema
     {
