@@ -15,6 +15,8 @@ class MenuForm
                 DatePicker::make('date')
                     ->label('تاریخ')
                     ->required()
+                    ->minDate(now()->addDays(1))
+                    ->maxDate(now()->addDays(30))
                     ->jalali(),
                 Select::make('dish_id')
                     ->label('غذا')

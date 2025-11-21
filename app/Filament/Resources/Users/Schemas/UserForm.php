@@ -4,8 +4,9 @@ namespace App\Filament\Resources\Users\Schemas;
 
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
+use Filament\Forms\Components\Select;
 use Filament\Schemas\Schema;
-
+use App\Enums\Enums\Users\UsersType;
 class UserForm
 {
     public static function configure(Schema $schema): Schema
@@ -15,11 +16,18 @@ class UserForm
                 TextInput::make('name')
                     ->required()
                     ->label('نام و نام خانوادگی')
-                    ->maxLength(255),
+                    ->minLength(3)
+                    ->maxLength(255)
+                    ->validationMessages([
+                        'min' => 'نام و نام خانوادگی نمی تواند کمتر از 3 کاراکتر باشد',
+                        'max' => 'نام و نام خانوادگی نمی تواند بیشتر از 255 کاراکتر باشد',
+                        'required' => 'نام و نام خانوادگی الزامی است',
+                    ]),
                 TextInput::make('mobile')
                     ->required()
                     ->label('شماره موبایل')
-                    ->maxLength(255),
+                    ->minLength(11)
+                    ->maxLength(11),
                 TextInput::make('email')
                     ->required()
                     ->label('ایمیل')
@@ -31,6 +39,7 @@ class UserForm
                 Select::make('type')
                     ->label('نوع')
                     ->options(UsersType::class)
+                    ->searchable()
                     ->required(),
                 TextInput::make('password')
                     ->password()
