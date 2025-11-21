@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-
+use App\Enums\Enums\Users\UsersType;
 return new class extends Migration
 {
     /**
@@ -20,7 +20,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable();
             $table->boolean('status')->default(true);
-
+            $table->string('type')->default(UsersType::USER);
             $table->softDeletes();
             $table->rememberToken();
             $table->timestamps();

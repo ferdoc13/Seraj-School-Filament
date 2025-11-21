@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-
+use App\Enums\Enums\Users\UsersType;
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
@@ -25,6 +25,7 @@ class User extends Authenticatable
         'email',
         'password',
         'status',
+        'type',
     ];
 
     /**
@@ -49,6 +50,7 @@ class User extends Authenticatable
             'mobile_verified_at' => 'datetime',
             'status' => 'boolean',
             'password' => 'hashed',
+            'type' => UsersType::class,
         ];
     }
     public function students(): HasMany

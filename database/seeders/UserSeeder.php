@@ -6,6 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use App\Enums\Enums\Users\UsersType;
 class UserSeeder extends Seeder
 {
     /**
@@ -19,6 +20,7 @@ class UserSeeder extends Seeder
             'email' => 'admin@admin.com',
             'password' => Hash::make('12345678'),
             'status' => true,
+            'type' => UsersType::STAFF,
         ]);
 
         User::factory(10)->create();

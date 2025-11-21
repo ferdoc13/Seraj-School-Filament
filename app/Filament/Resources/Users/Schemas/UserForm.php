@@ -28,7 +28,10 @@ class UserForm
                     ->inline(false)
                     ->label('وضعیت')
                     ->default(true),
-
+                Select::make('type')
+                    ->label('نوع')
+                    ->options(UsersType::class)
+                    ->required(),
                 TextInput::make('password')
                     ->password()
                     ->label('رمز عبور')

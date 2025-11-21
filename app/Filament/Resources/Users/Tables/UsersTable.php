@@ -16,6 +16,7 @@ use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
 use Ariaieboy\FilamentJalali\Tables\Columns\JalaliDateColumn;
+use App\Enums\Enums\Users\UsersType;
 class UsersTable
 {
     public static function configure(Table $table): Table
@@ -28,6 +29,13 @@ class UsersTable
                     ->label('شماره موبایل'),
                 TextColumn::make('email')
                     ->label('ایمیل'),
+                TextColumn::make('type')
+                    ->label('نوع')
+                    ->formatStateUsing(fn (UsersType $state): string => $state->getLabel())
+                    ->badge()
+                    ->sortable()
+                    ->searchable()
+                    ->color(fn (UsersType $state): string => $state->getColor()),
                 IconColumn::make('status')
                     ->label('وضعیت'),
                 TextColumn::make('created_at')
@@ -42,6 +50,9 @@ class UsersTable
                         1 => 'فعال',
                         0 => 'غیرفعال',
                     ]),
+                SelectFilter::make('type')
+                    ->label('نوع')
+                    ->options(UsersType::class),
                 TrashedFilter::make(),
             ])
             ->recordActions([

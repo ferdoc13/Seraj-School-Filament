@@ -18,12 +18,13 @@ class LevelResource extends Resource
 {
     protected static ?string $model = Level::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedAcademicCap;
 
     protected static ?string $recordTitleAttribute = 'Level';
     protected static ?string $pluralModelLabel = 'مدیریت مقاطع تحصیلی';
     protected static ?string $modelLabel = 'مقطع تحصیلی';
     protected static UnitEnum|string|null $navigationGroup = 'مدیریت مقاطع تحصیلی';
+    protected static ?int $navigationSort = 2;
 
     public static function form(Schema $schema): Schema
     {
