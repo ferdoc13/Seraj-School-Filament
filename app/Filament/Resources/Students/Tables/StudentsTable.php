@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Students\Tables;
 
+use App\Enums\Students\StudentField;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
@@ -29,6 +30,18 @@ class StudentsTable
                     ->label('نام والد'),
                 TextColumn::make('national_code')
                     ->label('کد ملی'),
+                TextColumn::make('level.name')
+                    ->label('مقطع')
+                    ->sortable()
+                    ->searchable()
+                    ->badge(),
+                TextColumn::make('field')
+                    ->label('رشته')
+                    ->sortable()
+                    ->searchable()
+                    ->badge()
+                    ->formatStateUsing(fn (StudentField $state): string => $state->getLabel())
+                    ->color(fn (StudentField $state): string => $state->getColor()),
                 TextColumn::make('birth_date')
                     ->label('تاریخ تولد')
                     ->jalaliDate(),

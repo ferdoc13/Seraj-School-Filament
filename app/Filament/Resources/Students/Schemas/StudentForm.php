@@ -9,7 +9,8 @@ use Filament\Forms\Components\Toggle;
 use Filament\Forms\Components\Select;
 use Ariaieboy\FilamentJalali\Forms\Components\JalaliDatePicker;
 use App\Models\User;
-
+use App\Models\Level;
+use App\Enums\Students\StudentField;
 class StudentForm
 {
     public static function configure(Schema $schema): Schema
@@ -34,8 +35,17 @@ class StudentForm
                     ->label('تاریخ تولد')
                     ->required()
                     ->jalali(),
+                Select::make('level_id')
+                    ->label('مقطع')
+                    ->options(Level::all()->pluck('name', 'id'))
+                    ->required(),
+                Select::make('field')
+                    ->label('رشته')
+                    ->options(StudentField::class)
+                    ->required(),
                 Toggle::make('status')
                     ->label('وضعیت')
+                    ->inline(false)
                     ->default(true),
                 
             ]);
