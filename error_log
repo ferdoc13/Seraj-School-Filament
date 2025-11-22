@@ -1,0 +1,1 @@
+[22-Nov-2025 09:27:28 UTC] PHP Fatal error:  Trait "Spatie\Permissions\Traits\HasRoles" not found in /home/serajed/Seraj-School-Filament/app/Models/User.php on line 13
