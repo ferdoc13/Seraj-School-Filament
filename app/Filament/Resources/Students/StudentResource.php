@@ -9,6 +9,7 @@ use App\Filament\Resources\Students\Schemas\StudentForm;
 use App\Filament\Resources\Students\Tables\StudentsTable;
 use App\Models\Student;
 use BackedEnum;
+use Filament\Facades\Filament;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
@@ -43,6 +44,19 @@ class StudentResource extends Resource
 
         ];
     }
+
+    public static function getEloquentQuery(): \Illuminate\Database\Eloquent\Builder
+    {
+        $query = parent::getEloquentQuery();
+
+        // فقط در پنل user فیلتر بشه
+        if (Filament::getCurrentPanel()->getId() === 'user') {
+            $query->where('user_id', auth()->id());
+        }
+
+        return $query;
+    }
+
 
     public static function getPages(): array
     {

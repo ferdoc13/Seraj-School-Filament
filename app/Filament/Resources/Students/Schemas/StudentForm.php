@@ -2,12 +2,13 @@
 
 namespace App\Filament\Resources\Students\Schemas;
 
+use Filament\Facades\Filament;
+use Filament\Forms\Components\Hidden;
 use Filament\Schemas\Schema;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\Components\Select;
-use Ariaieboy\FilamentJalali\Forms\Components\JalaliDatePicker;
 use App\Models\User;
 use App\Models\Level;
 use App\Enums\Students\StudentField;
@@ -15,9 +16,13 @@ class StudentForm
 {
     public static function configure(Schema $schema): Schema
     {
+        $isUserPanel = Filament::getCurrentPanel()->getId() === 'user';
         return $schema
             ->components([
-                Select::make('user_id')
+                $isUserPanel
+                    ? Hidden::make('user_id')
+                    ->default(fn () => auth()->id())
+                    : Select::make('user_id')
                     ->label('کاربر')
                     ->options(User::all()->pluck('name', 'id'))
                     ->required()
@@ -47,7 +52,7 @@ class StudentForm
                     ->label('وضعیت')
                     ->inline(false)
                     ->default(true),
-                
+
             ]);
     }
 }
